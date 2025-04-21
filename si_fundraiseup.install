@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Installation actions for edan_search.
+ */
+use Drupal\Core\Url;
+
+//function si_fundraiseup_requirements($phase) {
+//  $requirements = [];
+//  if ($phase == 'runtime') {
+//    $requirements['si_fundraiseup'] = [
+//      'title' => t('SI FundraiseUp enabled'),
+//      'description' => t('The <a href=":url">FundraiseUp code</a> must be entered.', [':url' => Url::fromRoute('si_fundraiseup.admin_settings_form')->toString()]),
+//      'severity' => REQUIREMENT_INFO,
+//    ];
+//  }
+//  return $requirements;
+//}
+
+function si_fundraiseup_install() {
+
+  \Drupal::messenger()->addMessage( t('The <a href=":url">FundraiseUp code</a> must be entered.', [':url' => Url::fromRoute('si_fundraiseup.admin_settings_form')->toString()]));
+}

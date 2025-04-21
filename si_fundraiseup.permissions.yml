@@ -1,0 +1,3 @@
+administer fundraiseup:
+  title: 'Administer FundraiseUp'
+  restrict access: TRUE
