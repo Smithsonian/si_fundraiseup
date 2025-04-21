@@ -1,0 +1,6 @@
+si_fundraiseup.admin_settings_form:
+  title: 'FundraiseUp'
+  parent: system.admin_config_services
+  description: 'FundraiseUp settings.'
+  route_name: si_fundraiseup.admin_settings_form
+  menu_name: admin
