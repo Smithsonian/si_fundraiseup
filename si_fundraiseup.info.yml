@@ -4,5 +4,5 @@ description: Add the fundraiseUp javascript snippet in the header.
 package: edan
 core: 8.x
 core_version_requirement: ^8 || ^9 || ^10
-version: 1.01
+version: 1.02
 

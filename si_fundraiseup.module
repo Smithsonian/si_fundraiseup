@@ -9,23 +9,27 @@
 use Drupal\Core\Render\Markup;
 
 function si_fundraiseup_page_attachments(array &$attachments) {
-	$config = \Drupal::service('config.factory')->get('si_fundraiseup.settings');
 
-	if ($code = $config->get('code')) {
-		$script = "(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+	$path_args = explode('/', trim(\Drupal::service('path.current')->getPath(), '/'));
+	if ($path_args[0] !== 'admin' && preg_match('/(?:\.add_|\.edit_|mercury_editor)/m', \Drupal::routeMatch()->getRouteName()) == FALSE) {
+		$config = \Drupal::service('config.factory')->get('si_fundraiseup.settings');
+		if ($code = $config->get('code')) {
+			$script = "(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
 .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
 :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
 j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
 t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
 for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
 })(window,document,'script','FundraiseUp','{$code}');";
-		//dump($script);
-		$attachments['#attached']['html_head'][] = [
-			[
-				'#tag' => 'script',
-				'#value' => Markup::create($script),
-			],
-			'si_fundraiseup_script',
-		];
+			//dump($script);
+			$attachments['#attached']['html_head'][] = [
+				[
+					'#tag' => 'script',
+					'#value' => Markup::create($script),
+				],
+				'si_fundraiseup_script',
+			];
+		}
 	}
+
 }
